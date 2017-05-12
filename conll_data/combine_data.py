@@ -18,6 +18,8 @@ def load_data_label(data_path):
 def label_to_file(filename, data):
     with open(filename, 'w') as ofile:
         for sent_data in data:
+            if len(sent_data) > 52:
+                continue
             for i in range(len(sent_data)):
                 tlabel = 'O'
                 if sent_data[i][2] == 1:
