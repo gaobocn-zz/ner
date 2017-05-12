@@ -25,8 +25,19 @@ def label_to_file(filename, data):
                         tlabel = 'I'
                     else:
                         tlabel = 'B'
-                ofile.write(sent_data[i][0] + '\t' + sent_data[i][1] + '\t' + tlabel+'\n')
+                ofile.write(sent_data[i][0] + '\t' + tlabel + '\t' + sent_data[i][1] + '\n')
             ofile.write('\n')
+
+def get_POS_tags(filename):
+    pos_tag = set()
+    for sentence in open(filename, encoding='utf-8').read().strip().split('\n\n'):
+        sent_data = []
+        for line in sentence.strip().split('\n'):
+            pos_tag.add(line.strip().split('\t')[1])
+    print(pos_tag)
+
+# get_POS_tags('conll2003_train.txt')
+
 
 data = []
 data.extend(load_data_label('eng.train'))
