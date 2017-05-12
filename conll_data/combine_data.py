@@ -4,7 +4,7 @@ def load_data_label(data_path):
     '''
     data = []
     for sentence in open(data_path, encoding='utf-8').read().strip().split('\n\n'):
-        sent_data, sent_data_idx, sent_label = [], [], []
+        sent_data = []
         for line in sentence.strip().split('\n'):
             line = line.strip().split(' ')
             if line[0] == '-DOCSTART-':
@@ -28,7 +28,8 @@ def label_to_file(filename, data):
                 ofile.write(sent_data[i][0] + '\t' + sent_data[i][1] + '\t' + tlabel+'\n')
             ofile.write('\n')
 
-data = load_data_label('eng.testa')
+data = []
+data.extend(load_data_label('eng.train'))
 data.extend(load_data_label('eng.testa'))
 data.extend(load_data_label('eng.testb'))
 
