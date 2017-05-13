@@ -18,10 +18,11 @@ def warning(msg):
     print>>sys.stderr, "WARNING:", msg
 
 def convert_bio_to_spans(bio_sequence):
+    bio_sequence = list(bio_sequence)
     spans = []  # (label, startindex, endindex)
     cur_start = None
     cur_label = None
-    N = len(bio_sequence)
+    N = len(list(bio_sequence))
     for t in range(N+1):
         if ((cur_start is not None) and
                 (t==N or re.search("^[BO]", bio_sequence[t]))):
